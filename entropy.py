@@ -70,5 +70,6 @@ def main(filename, image, n):
 if __name__ == "__main__":
     sys.argv.pop(0)
     if len(sys.argv) == 0 or len(sys.argv) > 3:
-        raise Exception('Only one argument (filename) should be given.')
+        raise Exception('The amount of arguments given is not correct.')
+        raise Exception('The amount of arguments given is not correct.')
     main(sys.argv.pop(0), sys.argv.pop(0), int(sys.argv.pop(0)) + 1 if len(sys.argv) > 0 else 1)
