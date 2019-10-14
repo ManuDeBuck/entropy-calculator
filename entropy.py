@@ -45,25 +45,22 @@ class ECalculator:
 
     def update_probabilities(self, subdict, probs, str):
         for key in subdict:
+            str += key
             if isinstance(subdict.get(key), dict):
-                str += key
                 self.update_probabilities(subdict.get(key), probs, str)
-                str = str[:-1]
             else:
-                str += key
                 probs[str] = subdict.get(key) / self.total
-                str = str[:-1]
+            str = str[:-1]
 
 
 def main(filename, image, n):
     calculator = ECalculator(n)
     if image.lower() == "true":
         image = Image.open(filename, 'r')
-        pixels = "".join(map(str, list(image.getdata())))
-        elements_splitted = [el for el in [pixels[i:i + n] for i in range(0, len(pixels))] if len(el) == n]
+        elements = "".join(map(str, list(image.getdata())))
     else:
-        lines = "".join([line for line in open(filename, "r")])
-        elements_splitted = [el for el in [lines[i:i + n] for i in range(0, len(lines))] if len(el) == n]
+        elements = "".join([line for line in open(filename, "r")])
+    elements_splitted = [el for el in [elements[i:i + n] for i in range(0, len(elements))] if len(el) == n]
     [calculator.process_element(el) for el in elements_splitted]
     print("Entropy with N = {}: {}".format(calculator.n - 1, calculator.get_entropy()))
 
