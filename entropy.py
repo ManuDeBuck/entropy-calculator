@@ -3,6 +3,7 @@ from math import log
 from copy import deepcopy
 from PIL import Image
 
+
 class ECalculator:
 
     def __init__(self, n):
@@ -38,7 +39,7 @@ class ECalculator:
         self.update_probabilities(self.dict, probs, "")
         if self.n > 1:
             self.update_probabilities(self.dict_min, probs_min, "")
-            return sum([ -probs[key] * log(probs[key] / probs_min[key[:-1]], 2) for key in probs])
+            return sum([-probs[key] * log(probs[key] / probs_min[key[:-1]], 2) for key in probs])
         else:
             return sum([-probs[key] * log(probs[key], 2) for key in probs])
 
@@ -59,10 +60,10 @@ def main(filename, image, n):
     if image.lower() == "true":
         image = Image.open(filename, 'r')
         pixels = "".join(map(str, list(image.getdata())))
-        elements_splitted = [el for el in [pixels[i:i+n] for i in range(0, len(pixels))] if len(el) == n]
+        elements_splitted = [el for el in [pixels[i:i + n] for i in range(0, len(pixels))] if len(el) == n]
     else:
         lines = "".join([line for line in open(filename, "r")])
-        elements_splitted = [el for el in [lines[i:i+n] for i in range(0, len(lines))] if len(el) == n]
+        elements_splitted = [el for el in [lines[i:i + n] for i in range(0, len(lines))] if len(el) == n]
     [calculator.process_element(el) for el in elements_splitted]
     print("Entropy with N = {}: {}".format(calculator.n - 1, calculator.get_entropy()))
 
@@ -70,6 +71,5 @@ def main(filename, image, n):
 if __name__ == "__main__":
     sys.argv.pop(0)
     if len(sys.argv) == 0 or len(sys.argv) > 3:
-        raise Exception('The amount of arguments given is not correct.')
         raise Exception('The amount of arguments given is not correct.')
     main(sys.argv.pop(0), sys.argv.pop(0), int(sys.argv.pop(0)) + 1 if len(sys.argv) > 0 else 1)
