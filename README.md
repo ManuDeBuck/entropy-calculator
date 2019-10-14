@@ -14,5 +14,5 @@ $ python3 entropy path/to/inputfile N
 ## Example usage
 ```bash
 $ python3 entropy.py input/input.txt 5
-> Entropy with N = 5: 8.716007696474326
+> Entropy with N = 5: 0.05171565341400789
 ```
