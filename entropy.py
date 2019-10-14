@@ -50,8 +50,7 @@ def main(filename, n):
     lines_splitted = [ el for el in [lines[i:i+n] for i in range(0, len(lines))] if len(el) == n]
 
     [calculator.process_element(el) for el in lines_splitted]
-    print(calculator.get_occurences(), calculator.get_total_occurences())
-    print(calculator.get_entropy())
+    print("Entropy with N = {}: {}".format(calculator.n - 1, calculator.get_entropy()))
 
 
 if __name__ == "__main__":
