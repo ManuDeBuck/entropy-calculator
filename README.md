@@ -8,11 +8,11 @@ When N > 0 the entropy is calculated based on the previous N characters.
 ## Usage
 
 ```bash
-$ ./entropy path/to/inputfile N
+$ python3 entropy path/to/inputfile N
 ```
 
 ## Example usage
 ```bash
-$ ./entropy.py input/input.txt 5
+$ python3 entropy.py input/input.txt 5
 > Entropy with N = 5: 8.716007696474326
 ```
